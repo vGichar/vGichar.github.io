@@ -4,10 +4,40 @@ body, html{
   background-color: black;
 }
 
+#game-wrapper{
+  margin: auto;
+  padding: 0px;
+  width: 510px;
+}
+
 #game-container{
+  float: left;
+  width: 100%;
+  border-radius: 5px;
+  border: 5px solid white;
+}
+
+#info-container{
   margin: auto;
   width: 480px;
-  height: 480px;
+}
+
+#info-container #time, #info-container #level, #info-container #best-wrapper{
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+
+#info-container #level{
+  text-align: left;
+}
+
+#info-container #time{
+  text-align: center;
+}
+
+#info-container #best-wrapper{
+  text-align: right;
 }
 
 #game-container .tile-wrapper{
@@ -34,15 +64,6 @@ body, html{
 
 #game-container .tile-wrapper .tile.marked{
   background-color: #fff !important;
-}
-
-#time, #level{
-  margin: auto;
-  text-align: center;
-  font-weight: bold;
-  font-size: 24px;
-  color: white;
-  padding: 10px;
 }
 
 * {

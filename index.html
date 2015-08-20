@@ -3,7 +3,8 @@
   	<head>
 	    <meta charset='utf-8'>
 	    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 
 	    <!--[if lt IE 9]>
@@ -14,10 +15,15 @@
   	</head>
 
   	<body>
-  		<div id="level">Level: 0</div>
-  		<div id="time">Time left: 0</div>
-  		<div id="game-container">
+  		<div id="info-container">
+	  		<div id="level">0</div>
+	  		<div id="time">0</div>
   		</div>
+  		<div id="game-wrapper">
+	  		<div id="game-container">
+	  		</div>
+  		</div>
+
         <script type="text/javascript">
 	        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -29,6 +35,7 @@
         	} catch(err) {}
       	</script>
       	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-      	<script type="text/javascript" src="javascripts/main.min.js"></script>
+      	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      	<script type="text/javascript" src="javascripts/main.js"></script>
   </body>
 </html>
