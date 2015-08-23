@@ -9,12 +9,12 @@
 	var TilesGrowth = 1;
 	var LevelsForTilesGrowth = 3;
 
-	var StartTime = 3200;
-	var StartTimeGrowth = -100;
+	var StartTime = 2800;
+	var StartTimeGrowth = 75;
 	var LevelsForStartTimeGrowth = 5;
 
-	var DimTimeMinimum = 280;
-	var DimTimeMaximum = 560;
+	var DimTimeMinimum = 350;
+	var DimTimeMaximum = 590;
 	var DimTime = DimTimeMinimum;
 	var DimTimeGrowth = 70;
 	var LevelsForDimTimeGrowth = 5;
@@ -39,13 +39,12 @@
 	var timeIntervalId = 0;
 
 	$(function(){
-		if(!HasBorder){
-			jContainer.css({
-				"border" : "5px solid white",
-				"border-radius" : "10px"
-			});
-		}
 		prepareContainer();
+		$(window).on("resize", function(){
+			drawContainer();
+		})
+		$(".fading").css("visibility", "visible");
+		$(".fading").hide().fadeIn(800);
 	});
 
 	function registerTileHadnlers (jTiles) {
@@ -83,21 +82,10 @@
 		setCurrentTime(CurrentTime);
 
 		TargetIndices = generateRandomTileIndices(CurrentTilesNumber, CurrentGridSize * CurrentGridSize);
-		jContainer.html('');
-		
-		for (var i = 0; i < CurrentGridSize * CurrentGridSize; i++) {
-			jContainer.append(TileTemplate);
-		}
+
+		drawContainer();
 
 		var jTiles = getTiles();
-		var tileSize = jContainer.width() / CurrentGridSize;
-		jTiles.parent().css({
-			width : tileSize,
-			height : tileSize
-		});
-		var jStartTargetTiles = getTiles(TargetIndices);
-		lightTiles(jStartTargetTiles);
-
 		if(registerTimeout == undefined){
 			registerTileHadnlers(jTiles);
 		}else{
@@ -107,6 +95,30 @@
 				registerTileHadnlers(jTiles);
 			}, registerTimeout);
 		}
+	}
+
+	function drawContainer(){
+		jContainer.html('');
+		
+		for (var i = 0; i < CurrentGridSize * CurrentGridSize; i++) {
+			jContainer.append(TileTemplate);
+		}
+
+		jContainer.css("width", null);
+
+		var jTiles = getTiles();
+		var tileSize = jContainer.width() / CurrentGridSize;
+		var tileSizeDecimalPart = tileSize % 1;
+		tileSize = parseInt(tileSize);
+		jTiles.parent().css({
+			width : tileSize,
+			height : tileSize
+		});
+
+		jContainer.width(jContainer.width() - (tileSizeDecimalPart * CurrentGridSize));
+		var jStartTargetTiles = getTiles(TargetIndices);
+
+		lightTiles(jStartTargetTiles);
 	}
 
 	function startGame () {
@@ -173,6 +185,7 @@
 	}
 
 	function generateRandomTileIndices (numOfTileIndices, limit) {
+		numOfTileIndices = Math.min(numOfTileIndices, CurrentGridSize * CurrentGridSize);
 		var indices = [];
 		while(numOfTileIndices > 0){
 			var index = Math.floor(Math.random() * limit);
