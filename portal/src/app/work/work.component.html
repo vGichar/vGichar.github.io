@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			
+		</div>
+		<div class="col-md-4 bordered-left">
+			<div *ngFor="let section of sections">
+				<h1><strong>{{section.name}}</strong></h1>
+				<skillbox *ngFor="let skill of section.items" [title]="skill.title" [text]="skill.text" [image]="skill.image"></skillbox>
+			</div>
+		</div>
+	</div>
+</div>
